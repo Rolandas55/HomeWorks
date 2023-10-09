@@ -9,20 +9,19 @@ import UIKit
  */
 
 var period = 5
-var deposit = 500000.0
-var profit = 0.0
+let firstDeposit = 500000.0
+var deposit = firstDeposit
+var profit: Double
 var rate = 0.05
 
 for _ in 1...period {
-    let tempProfit = (deposit + profit) * rate
-    profit += tempProfit
+    let tempProfit = deposit * rate
+    deposit += tempProfit
 }
 
-deposit = round((deposit + profit) * 100)/100.0
-profit = round(profit * 100) / 100
+profit = deposit - firstDeposit
 
-print("Amount of income after \(period) years will be \(profit) Eur. My total deposit will be \(deposit) Eur !")
-
+print("Amount of income after \(period) years will be \(String(format: "%.2f", profit)) Eur. My total deposit will be \(String(format: "%.2f", deposit)) Eur !")
 
 /*
  Exercise 2
@@ -75,4 +74,4 @@ while true {
     meters -= 1
 }
 
-print("bug will spend \(numberOfDays) to reach top of the post")
+print("bug will spend \(numberOfDays) days to reach top of the post")

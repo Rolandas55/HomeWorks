@@ -29,8 +29,8 @@ print("Exercise 1. Result: \(sum)")
  
  */
 
-var numberOne = 1
-var numberTwo = -2
+var numberOne = 10
+var numberTwo = 6
 let numberThree = numberOne / numberTwo
 let numberFour = numberOne % numberTwo
 
@@ -102,7 +102,18 @@ print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth
  Use switch case to print("I was born in the ... quarter")
  */
 
+var quarter = 0
+
 if let monthOfBirth = birthday.month {
-    var quarter = ((monthOfBirth - 1) / 3) + 1
-    print("I was born in the \(quarter) quarter")
+    quarter = ((monthOfBirth - 1) / 3) + 1
 }
+
+switch quarter {
+case 1: print("I was born in the first quarter")
+case 2: print("I was born in the second quarter")
+case 3: print("I was born in the third quarter")
+case 4: print("I was born in the fourth quarter")
+default: print("Wrong month")
+}
+
+
