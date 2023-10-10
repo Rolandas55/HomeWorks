@@ -45,18 +45,14 @@ print("When dividing \(numberOne) by \(numberTwo), the result is \(numberThree),
 
 var qty = 10
 var totalSum: Int
-var price: Int
+var price = 850
 
 if qty < 5 {
     price = 1000
-    totalSum = qty * price
 } else if qty < 10 {
     price = 900
-    totalSum = qty * price
-} else {
-    price = 850
-    totalSum = qty * price
 }
+totalSum = qty * price
 
 print("new: \(qty) MacBook Pro with the price of: \(price) EUR, will cost you: \(totalSum) Eur")
 
@@ -67,6 +63,8 @@ print("new: \(qty) MacBook Pro with the price of: \(price) EUR, will cost you: \
  */
 
 var userInputAge: String = "33a"
+
+//var number = Int(userInputAge)!
 
 if let number = Int(userInputAge) {
     print("userInputAge can be converted to a number: \(number)")
@@ -80,21 +78,20 @@ if let number = Int(userInputAge) {
  print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth) have passed")
  */
 
-var birthday = DateComponents()
-birthday.year = 2000
-birthday.month = 4
-birthday.day = 19
+var dateFormatter = DateFormatter()
+dateFormatter.dateFormat = "yyyy/MM/dd"
+var today = Date()
+var birthday = dateFormatter.date(from: "2000/04/19") ?? today
 
-var today = DateComponents()
-today.year = Calendar.current.component(.year, from: Date())
-today.month = Calendar.current.component(.month, from: Date())
-today.day = Calendar.current.component(.day, from: Date())
+if birthday == today {
+    print("the date of birthday is incorrect")
+}
 
-var totalYearsFromBirth = Calendar.current.dateComponents([.year], from: birthday, to: today)
-var totalMonthFromBirth = Calendar.current.dateComponents([.month], from: birthday, to: today)
-var totalDaysFromBirth = Calendar.current.dateComponents([.day], from: birthday, to: today)
+var totalYearsFromBirth = Calendar.current.dateComponents([.year], from: birthday, to: today).year ?? -1
+var totalMonthFromBirth = Calendar.current.dateComponents([.month], from: birthday, to: today).month ?? -1
+var totalDaysFromBirth = Calendar.current.dateComponents([.day], from: birthday, to: today).day ?? -1
 
-print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth) have passed")
+print("Total years: \(totalYearsFromBirth), total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth) have passed")
 
 /*
  Ex6:
@@ -102,18 +99,24 @@ print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth
  Use switch case to print("I was born in the ... quarter")
  */
 
-var quarter = 0
+var quarter = "unknown"
+dateFormatter.dateFormat = "MM"
+let bdayMonthString = dateFormatter.string(from: birthday)
+var bdayMonth = Int(bdayMonthString) ?? 0
 
-if let monthOfBirth = birthday.month {
-    quarter = ((monthOfBirth - 1) / 3) + 1
+switch bdayMonth {
+case 1...3:
+    quarter = "first"
+case 4...6:
+    quarter = "second"
+case 7...9:
+    quarter = "third"
+case 10...12:
+    quarter = "fourth"
+default:
+    print("The month of birthday is missing")
 }
 
-switch quarter {
-case 1: print("I was born in the first quarter")
-case 2: print("I was born in the second quarter")
-case 3: print("I was born in the third quarter")
-case 4: print("I was born in the fourth quarter")
-default: print("Wrong month")
-}
+print("I was born in the \(quarter) quarter")
 
 
