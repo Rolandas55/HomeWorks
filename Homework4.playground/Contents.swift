@@ -29,12 +29,12 @@ for matchup in resultsOfGames {
  Create a func to calculateCash sum of your cash inside your wallet.
  Run the func.
  */
+var banknotes = [5, 10, 20, 50, 100, 200, 500]
 
 func calculateCash(smallestBanknote min: Int, biggestBanknote max: Int) {
-    var totalCash = 0
-    for i in min...max {
-        totalCash += i
-    }
+    var totalCash = banknotes.reduce(0, {x, y in
+        x + y
+    })
     print("Inside your wallet you have \(totalCash) cash")
 }
 
@@ -84,16 +84,16 @@ print()
  Calculate and remove isEvenNumber using if array.firstIndex of number, inside the if array.remove at index.
  It should be 1/2 of createArray and started from [1,3,5.....
  */
-for a in array {
-    if isEvenNumber(a) {
-        array.remove(at: array.firstIndex(of: a)!)
-    }
-}
-
-//for (i, a) in array.enumerated().reversed() {
+//for a in array {
 //    if isEvenNumber(a) {
-//        array.remove(at: i)
+//        array.remove(at: array.firstIndex(of: a)!)
 //    }
 //}
+
+for (i, a) in array.enumerated().reversed() {
+    if isEvenNumber(a) {
+        array.remove(at: i)
+    }
+}
 
 print(array)
