@@ -59,10 +59,20 @@ class  Figure {
     }
     
     func squareOfFigure() -> Float {
-        return square!
+        if let value = square {
+            return value
+        } else {
+            print("square value is missing")
+            return 0
+        }
     }
     func perimeterOfFigure() -> Float {
-        return perimeter!
+        if let value = perimeter {
+            return value
+        } else {
+            print("perimeter value is missing")
+            return 0
+        }
     }
 }
 
