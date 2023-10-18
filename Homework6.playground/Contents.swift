@@ -36,7 +36,10 @@ func calculateResult(firstNumber numberOne: Int, andSecondNumber numberTwo: Int,
     case .multiplication:
         result *= numberTwo
     case .division:
-        result /= numberTwo
+        guard numberTwo != 0 else {
+            print("can't divide by zero")
+            return 0
+        }
     }
     print("Result:  \(calculationType.rawValue) \(numberOne) and \(numberTwo) = \(result)")
     return result
@@ -49,7 +52,7 @@ Call func 4 times for all calculateResult
 */
 
 var number1 = 16
-var number2 = 4
+var number2 = 0
 
 
 for type in CalculationType.allCases {
